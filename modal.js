@@ -231,7 +231,7 @@ module.exports = function(){
             // Dismiss / closing management
             if (modal.allowDismiss) {
                 modal.el.addEventListener('click', function(event) {
-                    var rect = modal.el.getBoundingClientRect();
+                    var rect = modal.contentWrapper.getBoundingClientRect();
                     var isInDialog = (rect.top <= event.clientY && event.clientY <= rect.top + rect.height && rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
                     if (!isInDialog && !event.target.closest('[class*=modal__]')){
                         modal.close();
