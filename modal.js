@@ -1,9 +1,7 @@
 // FEATURES TODO
 
-// CURRENT
-// style arrow outside modal
-// 
 // FEATURES DONE
+// style arrow outside modal
 // click on trigger without command
 // adding modal trigger to dom create a new modal
 // footer / actions

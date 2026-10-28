@@ -94,6 +94,8 @@ dialog.modal{
     position: fixed;
     top: 50vh;
     translate: 0 -50%;
+    height: 80vh;
+    align-content: center;
 	&:after{ 
 		content:"";
 		display: block;
@@ -187,6 +189,7 @@ dialog.modal--img {
 	.modal__arrow{
 		position: relative;
 		inset: auto;
+		height: auto;
 		translate: 0;
 		place-content:center;
 		&.prev{
@@ -196,5 +199,5 @@ dialog.modal--img {
 			grid-area: an;
 		}
 	}
-	.modal__footer{padding-block: 5px}
+	.modal__footer{padding-block: 5px;}
 }
