@@ -34,7 +34,7 @@ module.exports = function(){
             this.createFromTrigger = function(trigger){
                 trigger.classList.add('modal__trigger');
                 let modalID = trigger.getAttribute('commandfor')??trigger.dataset['modal']??trigger.dataset['id']??false;
-                let modalDebug = trigger.dataset['debug']??Modal.debug;
+                let modalDebug = utils.booleanify(trigger.dataset['debug'])??Modal.debug;
                 if(modalDebug) console.log('createFromTrigger')
                 if(modalDebug) console.log(modalID);
                 if(modalDebug) console.log("Trying to create modal "+modalID+" ...");
