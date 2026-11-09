@@ -370,11 +370,11 @@ module.exports = function(){
             })
         }
     }
-    // window.addEventListener("load", function(e) {
-    //     document.querySelectorAll('.modal__trigger,[command="--modal-open"]').forEach((el)=>{
-    //         Modal.createFromTrigger(el);
-    //     })
-    // });
+    window.addEventListener("load", function(e) {
+        document.querySelectorAll('.modal__trigger,[command="--modal-open"]').forEach((el)=>{
+            Modal.createFromTrigger(el);
+        })
+    });
 
     let modalTriggerObserver = new MutationObserver(function(mutations) {
         mutations.forEach( function (mutation) {
