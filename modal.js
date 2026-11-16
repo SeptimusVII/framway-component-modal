@@ -1,6 +1,7 @@
 // FEATURES TODO
 
 // FEATURES DONE
+// Sidepanels
 // style arrow outside modal
 // click on trigger without command
 // adding modal trigger to dom create a new modal
@@ -146,6 +147,7 @@ module.exports = function(){
             modal.isolateHTML           = modal.isolateHTML           ?? modal.getData('isolate-html',false);
             modal.classes               = modal.classes               ?? modal.getData('classes',false);
             modal.actions               = modal.actions               ?? undefined;
+            modal.sidepanel             = modal.sidepanel             ?? modal.getData('sidepanel',false);
 
             // HTML construction
             modal.el.id = modal.id;
@@ -182,6 +184,8 @@ module.exports = function(){
                 modal.wrapper.append(modal.footer);
             }
 
+            if (modal.sidepanel == false)
+                modal.el.removeAttribute('data-sidepanel');
 
             if (modal.classes){
                 for(var c of utils.segmentStr(modal.classes))

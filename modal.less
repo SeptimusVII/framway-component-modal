@@ -44,6 +44,7 @@ dialog.modal{
 	.paper();
 	.container();
 	.lcnm();
+	transition:  inherit;
 	position: relative;
 	padding: var(--modal-spacing);
 	grid-template-areas: 'h' 'c' 'f';
@@ -56,10 +57,10 @@ dialog.modal{
 
 .modal__header{
 	grid-area: h;
-	background: inherit;
-	padding: 0 ;
 	position: sticky;
 	top: 0;
+	background: inherit;
+	padding: 0 ;
 	&:before{
 		content: "";
 		background: inherit;
@@ -201,3 +202,79 @@ dialog.modal--img {
 	}
 	.modal__footer{padding-block: 5px;}
 }
+
+
+dialog.modal[data-sidepanel]{
+	--sidepanel-trs-duration: 0.4s;
+	padding: 0;
+	align-content: var(--sidepanel-align, start);
+	justify-items: var(--sidepanel-align, start);
+	transition: 
+	    var(--sidepanel-trs-duration) opacity,
+	    var(--sidepanel-trs-duration) display allow-discrete,
+	    var(--sidepanel-trs-duration) overlay allow-discrete
+	    ;
+
+	--sidepanel-translate: 0% 0%;
+	&[data-sidepanel=left]   {
+		--sidepanel-align: start;
+		--sidepanel-translate: -100% 0%;
+	}
+	&[data-sidepanel=right]  {
+		--sidepanel-align: end;
+		--sidepanel-translate: 100% 0%;
+	}
+	&[data-sidepanel=top]    {
+		--sidepanel-align: start;
+		--sidepanel-translate: 0% -100%;
+	}
+	&[data-sidepanel=bottom] {
+		--sidepanel-align: end;
+		--sidepanel-translate: 0% 100%;
+		overflow: hidden;
+		.modal__wrapper{
+			max-height: 100%;
+			overflow: auto;
+		}
+	}
+	&:open{
+		--sidepanel-translate: 0% 0%;
+		@starting-style {
+			.modal__wrapper{
+				--sidepanel-translate: -100% 0%;
+			}
+			&[data-sidepanel=left] .modal__wrapper{
+				--sidepanel-translate: -100% 0%;
+			}
+			&[data-sidepanel=right] .modal__wrapper{
+				--sidepanel-translate: 100% 0%;
+			}
+			&[data-sidepanel=top] .modal__wrapper{
+				--sidepanel-translate: 0% -100%;
+			}
+			&[data-sidepanel=bottom] .modal__wrapper{
+				--sidepanel-translate: 0% 100%;
+			}
+		}
+	}
+
+	.modal__wrapper{
+		--sidepanel-translate: inherit;
+		margin: unset;
+		min-height: 100%;
+		max-width: var(--sidepanel-mw,90vw);
+		width:     var(--sidepanel-w,fit-content);
+		translate: var(--sidepanel-translate);
+		transition: var(--sidepanel-trs-duration) translate;
+
+	}
+	&[data-sidepanel=top] ,
+	&[data-sidepanel=bottom]    {
+		.modal__wrapper{
+			min-height: 0;
+			--sidepanel-mw: none;
+			--sidepanel-w: 100%;
+		}
+	}
+}
+
