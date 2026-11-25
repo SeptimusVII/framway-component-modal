@@ -376,7 +376,8 @@ module.exports = function(){
     }
     window.addEventListener("load", function(e) {
         document.querySelectorAll('.modal__trigger,[command="--modal-open"]').forEach((el)=>{
-            Modal.createFromTrigger(el);
+            if (typeof el.component == 'undefined')
+                Modal.createFromTrigger(el);
         })
     });
 
@@ -384,7 +385,7 @@ module.exports = function(){
         mutations.forEach( function (mutation) {
             if (typeof mutation.addedNodes == "object") {
                 mutation.addedNodes.forEach(function (node) {
-                    if (node.nodeType != 1 || node.classList.contains('exclude_component'))
+                    if (node.nodeType != 1 || node.classList.contains('exclude_component') || typeof node.component != 'undefined')
                         return;
                     if (node.classList.contains('modal__trigger') || node.getAttribute('command') == "--modal-open") {
                         Modal.createFromTrigger(node);
